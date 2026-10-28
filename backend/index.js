@@ -3,7 +3,8 @@ const dns = require('dns');
 const {connectMongoDb} = require('./conn/connection');
 
 //routes
-const authRoute = require('./routes/auth');
+const userAuthRoute = require('./routes/userAuth');
+const businessAuthRoute = require('./routes/businessAuth');
 
 const app = express();
 const PORT = 8000;
@@ -19,6 +20,7 @@ connectMongoDb();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use('/auth',authRoute);
+app.use('/user',userAuthRoute);
+app.use('/business',businessAuthRoute);
 
 app.listen(PORT,()=>console.log(`SERVER STARTED AT PORT: ${PORT}`));
